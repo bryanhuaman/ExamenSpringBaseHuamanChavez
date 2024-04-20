@@ -38,7 +38,7 @@ public class EmpresaServiceImpl implements EmpresaService {
     @Override
     public EmpresaEntity actualizar(Long id, EmpresaEntity empresaEntity) {
         Optional<EmpresaEntity> empresarecuperada = empresaRepository.findById(id);
-        if(empresarecuperada.isPresent()){
+        if(empresarecuperada.isPresent() && empresarecuperada.get().getEstado() == 1){
             return empresaRepository.save(getUpdate(empresarecuperada.get(),empresaEntity));
         }
         return null;
